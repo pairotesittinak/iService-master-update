@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html ng-app="my-app">
+<head>
+    <meta charset="utf-8" />
+    <title>PR Central Library KMITL</title>
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+     
+     <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+
+
+    <link href="app-content/app.css" rel="stylesheet" />
+    <link rel="stylesheet" href="./news/index.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.cyan-deep_orange.min.css" />
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+
+    
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+</head>
+<body class="container">
+    <!-- header -->
+    <header>
+    <div class="jumbotron text-center">
+  <h1>ระบบประชาสัมพันธ์</h1>
+  <p>สำนักหอสมุดกลาง สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง</p> 
+</div>
+        <ul class="nav nav-tabs ">
+            
+            <li ng-class="{active: activeTab === 'news'}"><a ui-sref="news">news</a></li>
+            <li ng-class="{active: activeTab === 'home'}"><a ui-sref="home">User Setting</a></li>
+            <li ng-class="{active: activeTab === 'account'}"><a ui-sref="account">Account</a></li>
+            <li ng-class="{active: activeTab === 'showUsers'}"><a ui-sref="showUsers">Check-Online</a></li>
+            <li><a href="/login" target="_self">Logout</a></li>
+        </ul> 
+        <div class="flash-message" ng-if="flash">
+            <div class="{{'alert alert-' + flash.type}}" ng-bind="flash.message"></div>
+        </div>
+          
+    </header>
+<!-- Text Editor -->
+
+      
+<!-- End -->
+    <!-- main -->
+    <main ui-view>
+    
+    </main>
+    <!-- footer -->
+    <!-- external scripts -->
+<!--       <script src="../node_modules/angular/angular.min.js"></script>
+  <script src="../node_modules/chart.js/dist/Chart.min.js"></script>
+  <script src="../node_modules/angular-chart.js/dist/angular-chart.min.js"></script> -->
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <!-- <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script> -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+    <!-- application scripts -->
+    <script src="app.js"></script>
+    <script src="app-services/user.service.js"></script>
+    <script src="app-services/flash.service.js"></script>
+
+
+<script src="/socket.io/socket.io.js"></script>
+<!-- <script>
+  var socket = io.connect('http://localhost');
+  socket.on('news', function (data) {
+    console.log(data);
+    socket.emit('my other event', { my: 'data' });
+  });
+</script> -->
+<!-- <script>
+   var socket = io.connect( "http://localhost:3000");
+</script> -->
+<script>  
+    var socket = io.connect( "http://localhost:3000");
+    socket.on('stats', function(data) {
+        console.log('Connected clients:', data.numClients);
+    });
+</script>  
+
+
+
+ <!--   <script src="pr/index.controller.js"></script>-->
+    <script src="news/index.controller.js"></script>
+    <script src="home/index.controller.js"></script>
+    <script src="account/index.controller.js"></script>
+   <script src="showUsers/index.controller.js"></script>
+    <style>
+        .jumbotron {
+      background-color: #f4511e;
+      color: #fff;
+      padding: 70px 20px;
+      font-family: Montserrat, sans-serif;
+    </style>
+
+</body>
+
+
+</html>
+

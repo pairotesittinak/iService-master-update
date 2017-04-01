@@ -1,0 +1,59 @@
+
+<div class="container">
+  <h2>ข่าวประชาสัมพันธ์</h2>
+  
+<button class="btn btn-warning"}"><a ui-sref="pr">เริ่มข่าวใหม่</a></button>
+
+
+                                                                                      
+  <div class="table-responsive">          
+  <table class="table">
+    <thead>
+      <tr>
+        <th > #</th>
+        <th > หัวข้อข่าว</th>
+        <th>วัน เวลาที่ส่ง</th>
+        <th>เป้าหมาย</th>
+        <th>ผู้ประกาศ</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+          <tr ng-repeat="test in ALL">
+        <td>1</td>
+        <td>
+  <div class    = "cover-image module" ng-style="{'background-image': 'url(' + test.image + ')'}" 
+  width="500" height="412" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true">
+   <p class   = "head-content-image">{{test.description}}<br>
+  </p>  </div>
+
+
+          <!-- <img ng-src="{{test.image}}" alt="{{test.image}}"
+      width="500" height="412" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" > -->
+      </td>
+        <td>{{test.date | date:'EEE M/d/yyyy h:mm a'}}</td>
+        <td>ALL</td>
+        <td>Pairote</td>
+        
+      </tr>
+      <!-- <tr>
+        <td>1</td>
+        <td><iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fejeab%2Fposts%2F623453427860997%3A0&width=500" width="500" height="412" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe></td>
+        <td>28th January 2017, 22:01</td>
+        <td>ALL</td>
+        <td>Pairote</td>
+        
+      </tr>
+      <tr>
+        <td>2</td>
+        <td><iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fejeab%2Fposts%2F623565864516420%3A0&width=500" width="500" height="166" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe></td>
+        <td>29th January 2017, 1.19</td>
+        <td>ALL</td>
+        <td>Panupong</td>
+        
+      </tr> -->
+    </tbody>
+  </table>
+  </div>
+</div>
+

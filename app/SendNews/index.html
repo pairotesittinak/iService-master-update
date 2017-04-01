@@ -1,0 +1,25 @@
+<!--<!DOCTYPE html>
+<head>
+  <script type="text/javascript" src="../bower_components/tinymce-dist/tinymce.js"></script>
+  <script type="text/javascript" src="../bower_components/angular/angular.js"></script>
+  <script type="text/javascript" src="../bower_components/angular-ui-tinymce/src/tinymce.js"></script>
+  <script type="text/javascript" src="index.controller.js"></script>
+</head>
+<body ng-app="myApp">
+  <form method="post" ng-controller="TinyMceController">
+    <textarea ui-tinymce="tinymceOptions" ng-model="tinymceModel"></textarea>
+    <button ng-click="getContent()">Get content</button>
+    <button ng-click="setContent()">Set content</button>
+  </form>
+</body> -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="//cloud.tinymce.com/stable/tinymce.min.js"></script>
+  <script>tinymce.init({ selector:'textarea' });</script>
+</head>
+<body>
+  <textarea>Easy! You should check out MoxieManager!</textarea>
+</body>
+</html>

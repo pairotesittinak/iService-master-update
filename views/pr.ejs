@@ -1,0 +1,47 @@
+<script type="text/javascript" src="ckeditor/ckeditor.js"></script> 
+<div class="jumbotron text-center">
+<!-- <textarea class="ckeditor" name="editor1"></textarea> -->
+
+<section>
+<form action="/upload" method="post" enctype="multipart/form-data">
+    <form action="/upload" method="post">
+      <div class="checkbox disabled">
+        <label for="topic">topic</label>
+        <input type="checkbox" id="topic" name="topic" class="form-control" value="true">
+        </div>
+        <div class="input">
+            <label for="title">title</label>
+            <input type="text" id="title" name="title" class="form-control">
+        </div>
+        <div class="input">
+            <label for="group_id">group_id</label>
+            <input type="text" id="group_id" name="group_id" class="form-control">
+        </div>
+                <div class="input">
+            <label for="author">author</label>
+            <input type="text" id="author" name="author" class="form-control">
+        </div>
+                <div class="input">
+            <label for="description">descriptiony</label>
+            <input type="text" id="description" name="description" class="form-control">
+        </div>
+                        <div class="input">
+            <label for="userType">userType</label>
+            <input type="text" id="userType" name="userType" class="form-control">
+        </div>
+                        <div class="input">
+            <label for="faculty">faculty</label>
+            <input type="text" id="faculty" name="faculty" class="form-control">
+        </div>
+                        <div class="input">
+            <label for="year">year</label>
+            <input type="text" id="year" name="year" class="form-control">
+        </div>
+ <input type="file" name="filefield">
+ <button type="submit" class="btn btn-primary active">BUTTON</button>
+</form>
+</section>
+
+<a class="btn btn-raised btn-warning">ส่งข้อมูล</a>
+   
+</div>

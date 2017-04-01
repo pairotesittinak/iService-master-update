@@ -1,0 +1,159 @@
+<div class="container" ng-app="myApp" ng-controller="news.IndexController">
+  <h2>ข่าวประชาสัมพันธ์</h2>
+<button type="button" class="mdl-button mdl-js-button mdl-button--raised"}"> <form action="./indextwo.html">
+    <input type="submit" value="เริ่มข่าวใหม่">
+</form></button>
+<!-- Search News -->
+<label>Search: <input ng-model="Search.title"></label>
+<button type="submit" ng-click="getNews()" class="btn btn-success">ค้นหา</button>
+<div class="btn-group" role="group" aria-label="...">
+  <button type="button" class="btn btn-info" ng-click="showNewsAll()">ข่าวทั่วไป</button>
+  <button type="button" class="btn btn-info" ng-click="showNewsLib()">ข่าวสำนักหอสมุดกลาง</button>
+  <button type="button" class="btn btn-info" ng-click="showNewsIt()">ข่าวไอที</button>
+</div>
+<div class="table-responsive" id="div-news-search" style="display: none;">  
+<div class="well well-sm text-center" style="margin: 30px; background: #ff7f50; font-weight: bold;">ค้นหาข่าวของ  {{SearchNews.title}}</div>        
+  <table class="table tableSearch" >
+    <thead>
+      <tr>
+        <th>Number</th>
+        <th>หัวข้อข่าว</th>
+        <th>วัน เวลาที่ส่ง</th>
+        <th>เป้าหมาย</th>
+        <th>ผู้ประกาศ</th>
+        <th>แก้ไข</th>
+        <th>ลบ</th>
+      </tr>
+    </thead>
+    <tbody>
+          <tr>
+        <td>{{$index+1}}</td>
+        <td>
+  <div class    = "cover-image module" ng-style="{'background-image': 'url(' +SearchNews.image + ')'}" 
+  width="500" height="412" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true">
+   <p class   = "head-content-image">{{SearchNews.description}}<br>
+  </p>  </div>
+      </td>
+        <td>{{SearchNews.date | date:'EEE M/d/yyyy h:mm a'}}</td>
+        <td>{{SearchNews.group_id}}</td>
+        <td>{{SearchNews.author}}</td>
+      <td><button type="button" class="btn btn-danger" ng-click="ButtonUpdateNews(News)">แก้ไข</button></td>
+      <td><button type="button" class="btn btn-danger" ng-click="ButtonDeleteNews(News)">ลบ</button></td>
+      </tr>
+    </tbody>
+  </table>                                                                
+</div>
+<!-- SHOW ALL NEWS -->
+  <div class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp" id="div-news-all" style="display: block;">   
+  <div class="well well-sm text-center" style="margin: 30px; background: #ff7f50; font-weight: bold; color: white;">ข่าวทั่วไป</div>         
+  <table class="table">
+    <thead>
+      <tr>
+        <th class= "mdl-data-table__cell--non-numeric">Number</th>
+        <th>หัวข้อข่าว</th>
+        <th>วัน เวลาที่ส่ง</th>
+        <th>เป้าหมาย</th>
+        <th>ผู้ประกาศ</th>
+        <th>แก้ไข</th>
+        <th>ลบ</th>
+      </tr>
+    </thead>
+    <tbody>
+          <tr ng-repeat="News in dataNews">
+        <td>{{$index+1}}</td>
+        <td>
+<!--   <div class    = "cover-image module" ng-style="{'background-image': 'url(' +News.image + ')'}" 
+  width="500" height="412" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true">
+   <span ng-bind-html="News.description"> </span>
+
+  </p>  </div> -->
+
+  <div class="demo-card-wide mdl-card mdl-shadow--2dp" >
+  <div class="mdl-card__title" ng-style="{'background-image': 'url(' +News.image + ')'}" style=" height: 176px;">
+  </div>
+<!--   <div class="mdl-card__supporting-text">
+   {{News.title}}
+  </div> -->
+  <div class="mdl-card__actions mdl-card--border">
+    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+     หัวข้อข่าว : {{News.title}}
+    </a>
+  </div>
+</div>
+      </td>
+        <td>{{News.date | date:'EEE M/d/yyyy h:mm a'}}</td>
+        <td>{{News.group_id}}</td>
+        <td>{{News.author}}</td>
+      <td><button type="button" class="btn btn-danger" ng-click="ButtonUpdateNews(News)">แก้ไข</button></td>
+      <td><button type="button" class="btn btn-danger" ng-click="ButtonDeleteNews(News)">ลบ</button></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+<!-- SHOW ALL IT -->
+  <div class="table-responsive" style="display: none;" id="div-news-it">  
+  <div class="well well-sm text-center" style="margin: 30px; background: #ff7f50; font-weight: bold;">ข่าวไอที</div>         
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Number</th>
+        <th>หัวข้อข่าว</th>
+        <th>วัน เวลาที่ส่ง</th>
+        <th>เป้าหมาย</th>
+        <th>ผู้ประกาศ</th>
+        <th>แก้ไข</th>
+        <th>ลบ</th>
+      </tr>
+    </thead>
+    <tbody>
+          <tr ng-repeat="News in dataNewsIt">
+        <td>{{$index+1}}</td>
+        <td>
+  <div class    = "cover-image module" ng-style="{'background-image': 'url(' +News.image + ')'}" 
+  width="500" height="412" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true">
+   <p class   = "head-content-image">{{News.description}}<br>
+  </p>  </div>
+      </td>
+        <td>{{News.date | date:'EEE M/d/yyyy h:mm a'}}</td>
+        <td>{{News.group_id}}</td>
+        <td>{{News.author}}</td>
+      <td><button type="button" class="btn btn-danger" ng-click="ButtonUpdateNews(News)">แก้ไข</button></td>
+      <td><button type="button" class="btn btn-danger" ng-click="ButtonDeleteNews(News)">ลบ</button></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+<!-- SHOW ALL LIB -->
+  <div class="table-responsive" style="display: none;" id="div-news-lib">     
+  <div class="well well-sm text-center" style="margin: 30px; background: #ff7f50; font-weight: bold;">ข่าวสำนักหอสมุด</div>      
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Number</th>
+        <th>หัวข้อข่าว</th>
+        <th>วัน เวลาที่ส่ง</th>
+        <th>เป้าหมาย</th>
+        <th>ผู้ประกาศ</th>
+        <th>แก้ไข</th>
+        <th>ลบ</th>
+      </tr>
+    </thead>
+    <tbody>
+          <tr ng-repeat="News in dataNewsLib">
+        <td>{{$index+1}}</td>
+        <td>
+  <div class    = "cover-image module" ng-style="{'background-image': 'url(' +News.image + ')'}" 
+  width="500" height="412" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true">
+   <p class   = "head-content-image">{{News.description}}<br>
+  </p>  </div>
+      </td>
+        <td>{{News.date | date:'EEE M/d/yyyy h:mm a'}}</td>
+        <td>{{News.group_id}}</td>
+        <td>{{News.author}}</td>
+      <td><button type="button" class="btn btn-danger" ng-click="ButtonUpdateNews(News)">แก้ไข</button></td>
+      <td><button type="button" class="btn btn-danger" ng-click="ButtonDeleteNews(News)">ลบ</button></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</div>

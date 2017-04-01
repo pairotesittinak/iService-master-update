@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html ng-app="my-app">
+<head>
+    <meta charset="utf-8" />
+    <title>PR Central Library KMITL</title>
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+     
+     <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- <link href="app-content/app.css" rel="stylesheet" />
+    <link rel="stylesheet" href="./news/index.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.cyan-deep_orange.min.css" /> -->
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script> -->
+</head>
+<body class="container" ng-controller="IndexTwoController">
+    <!-- header -->
+    <header>
+    <div class="jumbotron text-center">
+  <h1>ระบบประชาสัมพันธ์</h1>
+  <p>สำนักหอสมุดกลาง สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง</p> 
+</div>
+        <ul class="nav nav-tabs ">
+            
+            <li ng-class="{active: activeTab === 'news'}"><a ui-sref="news">news</a></li>
+            
+            <li><a href="index.html" target="_self">back</a></li>
+        </ul> 
+        <div class="flash-message" ng-if="flash">
+            <div class="{{'alert alert-' + flash.type}}" ng-bind="flash.message"></div>
+        </div>
+          
+    </header>
+
+
+
+<div class="jumbotron text-center">
+
+<section>
+<form action="/upload" method="post" enctype="multipart/form-data">
+    <form action="/upload" method="post">
+
+
+
+      <div class="input">
+        <label for="topic">topic</label>
+        <input type="checkbox" id="topic" name="topic" class="form-control" value="true">
+        </div>
+
+        <div class="input">
+            <label for="title">title</label>
+            <input type="text" id="title" name="title" class="form-control">
+        </div>
+
+        <div class="input">
+        <label for="group_id">group_id</label>
+        <select id="group_id" name="group_id" class="form-control">
+      <option value="all">ทั่วไป</option>
+      <option value="lib">สำนักหอสมุดกลาง</option>
+      <option value="it">ไอที</option>
+        </select>
+        </div>
+
+                <div class="input">
+            <label for="author">author</label>
+            <input type="text" id="author" name="author" class="form-control">
+        </div>
+        <div class="input">
+        <label for="userType">ประเภท User ที่จะส่ง</label>
+        <select id="userType" name="userType" class="form-control">
+        <option value="all">ทั้งหมด</option>
+      <option value="student">นักศึกษา</option>
+      <option value="person">บุคลากรทั้วไป</option>
+        </select>
+        </div>
+
+          <div class="input">
+        <label for="faculty">คณะ</label>
+        <select id="faculty" name="userType" class="form-control">
+      <option value="all">ทั้งหมด</option>
+      <option value="EN">วิศวกรรมศาสตร์</option>
+      <option value="ST">สถาปัตยกรรมศาสตร์</option>
+      <option value="IDED">ครุศาสตร์อุตสาหกรรม</option>
+      <option value="AU">เทคโนโลยีการเกษตร</option>
+      <option value="SI">เวิทยาศาสตร์</option>
+      <option value="ARGO">อุตสาหกรรมเกษตร</option>
+      <option value="IT">เทคโนโลยีสารสนเทศ</option>
+      <option value="EM">วิทยาลัยการบริหารและจัดการ</option>
+      <option value="IN">วิทยาลัยนานาชาติ</option>
+        </select>
+        </div>
+
+        <div class="input">
+        <label for="year">ชั้นปี</label>
+        <select id="year" name="year" class="form-control">
+        <option value="all">ทุกชั้นปี</option>
+      <option value="54">ปี 6</option>
+      <option value="55">ปี 5</option>
+      <option value="56">ปี 4</option>
+      <option value="57">ปี 3</option>
+      <option value="58">ปี 2</option>
+      <option value="59">ปี 1</option>
+        </select>
+        </div>
+    <div class="btn btn-primary btn-file">
+        <input type="file" name="filefield">
+    </div>     
+
+<textarea name="description" style="width:100%">
+    </textarea>
+
+<div>
+ <button type="submit" class="btn btn-primary active">BUTTON</button>
+</div>
+</form>
+</section>
+   
+</div>
+
+
+
+
+<script src="//cloud.tinymce.com/stable/tinymce.min.js"></script>
+  <script>
+  tinymce.init({ selector:'textarea',});
+  </script>
+<script type="text/javascript">
+function ajaxLoad() {
+    var ed = tinyMCE.get('content');
+
+    // Do you ajax call here, window.setTimeout fakes ajax call
+    ed.setProgressState(1); // Show progress
+    window.setTimeout(function() {
+        ed.setProgressState(0); // Hide progress
+        ed.setContent('HTML content that got passed from server.');
+    }, 3000);
+}
+
+function show(){
+    var ed=tinymce.get('content');
+    alert(ed.getContent());
+}
+function ajaxSave() {
+    var ed = tinyMCE.get('content');
+    // Do you ajax call here, window.setTimeout fakes ajax call
+    ed.setProgressState(1); // Show progress
+    window.setTimeout(function() {
+        ed.setProgressState(0); // Hide progress
+        alert(ed.getContent());
+    }, 3000);
+}
+</script>
+  
+    </main>
+    <style>
+        .jumbotron {
+      background-color: #f4511e;
+      color: #fff;
+      padding: 70px 20px;
+      font-family: Montserrat, sans-serif;
+    </style>
+<script>  
+    var socket = io.connect( "http://localhost:3000");
+    socket.on('stats', function(data) {
+        console.log('Connected clients:', data.numClients);
+    });
+</script>  
+</body>
+</html>

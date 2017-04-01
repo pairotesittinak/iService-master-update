@@ -1,0 +1,161 @@
+<h1>จัดการ User</h1>
+<div ng-app="myApp" ng-controller="Home.IndexController">
+<div class="form-container">
+<div id="div-editAdd" style="display: none;">
+                <label class="item item-input">
+                    <span class="input-label">Username :</span>
+                    <input type="text" placeholder="ใส่ Username เพื่อใช้ Login" ng-model="username" name="username">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Password :</span>
+                    <input type="password" placeholder="ใส่รหัสผ่าน" ng-model="password" name="password">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">firstname :</span>
+                    <input type="text" placeholder="ใส่ชื่อประจำตัว" ng-model="firstname" name="firstname">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">lastName :</span>
+                    <input type="text" placeholder="ใส่ชื่อประจำตัว" ng-model="lastname" name="lastname">
+                </label>
+
+      <label class="item item-input item-select">
+                    <div class="input-label">
+                      คณะ
+                    </div>
+        <select type="text"  ng-model="faculty" name="faculty">
+      <option value="all">ทั้งหมด</option>
+      <option value="EN">วิศวกรรมศาสตร์</option>
+      <option value="ST">สถาปัตยกรรมศาสตร์</option>
+      <option value="IDED">ครุศาสตร์อุตสาหกรรม</option>
+      <option value="AU">เทคโนโลยีการเกษตร</option>
+      <option value="SI">วิทยาศาสตร์</option>
+      <option value="ARGO">อุตสาหกรรมเกษตร</option>
+      <option value="IT">เทคโนโลยีสารสนเทศ</option>
+      <option value="EM">วิทยาลัยการบริหารและจัดการ</option>
+      <option value="IN">วิทยาลัยนานาชาติ</option>
+        </select>
+                  </label>
+                <label class="item item-input item-select">
+                <div class="input-label">
+                   ชั้นปี
+                    </div>
+        <select ng-model="year" name="year" type="text">
+        <option value="all">ทุกชั้นปี</option>
+      <option value="54">ปี 6</option>
+      <option value="55">ปี 5</option>
+      <option value="56">ปี 4</option>
+      <option value="57">ปี 3</option>
+      <option value="58">ปี 2</option>
+      <option value="59">ปี 1</option>
+        </select>
+          </label>
+          <label class="item item-input item-select">
+            <div class="input-label">
+              ประเภท
+            </div>
+            <select ng-model="userType" name="userType">
+              <option selected value="student">นักศึกษา</option>
+              <option value="person">บุคลากร</option>
+            </select>
+          </label>
+
+<!-- <button ng-click="addUsers()" class="button button-balanced button-block ">Sign up</button> -->
+<div>
+<button ng-click="addData()" class="btn btn-success">saveDaata</button>
+<button ng-click="cancelAdd()" class="btn btn-danger">cancel</button>
+</div>
+</div>
+
+
+
+<!-- BUTTON SEARCH -->
+<div>
+<label>Search: <input ng-model="Search.username"></label>
+<button type="submit" ng-click="getUser()">ค้นหา</button>
+<!-- SHOW USER Search-->
+<!-- <div id="div-getUserBox" style="display: none;"> -->
+<table class="table table-striped table-hover">
+      <thead>
+      <tr>
+    <th>ชื่อผู้ใช้งาน</th>
+    <th>คณะ</th>
+    <th>ชั้นปี</th>
+    <th>ประเภทผู้ใช้</th>
+    <th>แก้ไข</th>
+    <th>ลบ</th>
+      </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{GetDataUser.firstname}} {{GetDataUser.lastname}}</td>
+      <td>{{GetDataUser.faculty}}</td>
+      <td>{{GetDataUser.year}}</td>
+      <td>{{GetDataUser.userType}}</td>
+      <td><button class="buttonSearchUpdate btn btn-danger" type="button"  ng-click="ButtonUpdateGetUser()" style="display: none;"> แก้ไข </button></td>
+      <td><button class="buttonSearchUpdate btn btn-danger" type="button"  ng-click="ButtonDeleteSearch()" style="display: none;"> ลบ </button></td>
+    </tr>
+      </tbody>
+    </table> 
+    <label>
+    <button ng-click="calcelGetUser()" style="display: none;" id="backHome">กลับหน้า Home</button>
+    </label>
+</div>
+<!-- Search Update Users -->
+<div id="div-editSearch" style="display: none;" >
+firstname: <input type="text" ng-model="GetDataUser.firstname" name="firstname"> <br />
+lastname: <input type="text" ng-model="GetDataUser.lastname" name="lastname"> <br />
+faculty: <input type="text" ng-model="GetDataUser.faculty" name="faculty"> <br />
+year: <input type="text" ng-model="GetDataUser.year" name="year"> <br />
+userType: <input type="text" ng-model="GetDataUser.userType" name="userType"> <br />
+<button ng-click="saveSearch()" class="btn btn-success">saveDaata</button>
+</div>
+
+<!-- Show All Users -->
+</div>
+<div id="div-table">
+<button ng-click="ButtonAdd()" class="btn btn-success"> เพิ่มผู้ใช้งาน</button>
+    <table class="table table-striped table-hover" ng-init="init()" >
+      <thead>
+      <tr>
+    <th>Num</th>
+    <th>ชื่อผู้ใช้งาน</th>
+    <th>คณะ</th>
+    <th>ชั้นปี</th>
+    <th>ประเภทผู้ใช้</th>
+    <th>แก้ไข</th>
+    <th>ลบ</th>
+      </tr>
+  </thead>
+  <tbody ng-repeat="test in ShowUsersIonic | limitTo : 10 ">
+    <tr action="/home" >
+      <td>{{ $index +1 }}</td>
+      <td>{{test.firstname}} {{test.lastname}}</td>
+      <td>{{test.faculty}}</td>
+      <td>{{test.year}}</td>
+      <td>{{test.userType}}</td>
+      <td><button type="button" class="btn btn-danger" ng-click="ButtonUpdateUser(test)"> แก้ไข </button></td>
+      <td><button type="button" class="btn btn-danger" ng-click="ButtonDeleteUser(test)"> ลบ </button></td>
+    </tr>
+      </tbody>
+      <tfoot  >
+      <tr>
+      <td  colspan="6">
+         รวม User ทั้งหมด {{ShowUsersIonic.length}}     
+      </td>
+      </tr>
+      </tfoot>
+    </table> 
+    </div>
+<!-- Update Users -->
+<div id="div-editbox" style="display: none;">
+firstname: <input type="text" ng-model="buttonUpdateUser.firstname" name="firstname"> <br />
+lastname: <input type="text" ng-model="buttonUpdateUser.lastname" name="lastname"> <br />
+faculty: <input type="text" ng-model="buttonUpdateUser.faculty" name="faculty"> <br />
+year: <input type="text" ng-model="buttonUpdateUser.year" name="year"> <br />
+userType: <input type="text" ng-model="buttonUpdateUser.userType" name="userType"> <br />
+<button ng-click="saveData()" class="btn btn-success">saveDaata</button>
+<button ng-click="cancelData()" class="btn btn-danger">cancelDaata</button>
+</div>
+</div>
+</div>

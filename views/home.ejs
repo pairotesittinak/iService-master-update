@@ -1,0 +1,34 @@
+
+<table class="table table-striped table-hover">
+      <thead>
+  
+  <tr>
+    <th>Num</th>
+    <th>ชื่อผู้ใช้งาน</th>
+    <th>นามสกุล</th>
+    <th>Username</th>
+    <th>สถานะ</th>
+    <th>บทบาทหน้าที่</th>
+    <th>คณะ</th>
+    <th>ชั้นปี</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr action="/home">
+    <% for(var i=0; i < item.length; i++) { %>
+      <td type="1">1</td>
+      <td><%= firstName %></td>
+      <td><%= item[i].lastName %></td>
+      <td><%= item[i].username %></td>
+      <td><%= item[i].Status %></td>
+      <td><%= item[i].typeUser %></td>
+      <td><%= item[i].faculty %></td>
+      <td><%= item[i].year %></td>
+
+     <% } %>
+    </tr>
+      </tbody>
+
+    </table> 
+    </div>
+    
